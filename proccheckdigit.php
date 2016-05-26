@@ -8,18 +8,19 @@ $slot = $_POST{"slot"};
 $loc = $zone.$aisle.$bay.$level.$slot;
 echo "location var reports as: $loc <br>";
 $floc = floatval($loc);
-$locmod = ($floc/98);
-$txtloc = sprintf('%s', $locmod);
-$i = strpos($txtloc, '.');
-$txtrem = substr($txtloc, $i+1);
-$txtdotrem = ".".$txtrem;
+$locmod = fmod($floc,98);
+echo "Mod98 for location is $locmod";
+$txtmod = sprintf("%s", $locmod);
+$txtdotrem = "0.".$txtmod;
 echo "txtdotrem says it is: $txtdotrem <br>";
 $dotrem = sprintf("%f", $txtdotrem);
 echo "dotrem says it is: $dotrem <br>";
+$modtest = fmod($floc,98);
+echo "modtest says it is $modtest<br>";
 $newrem = ($dotrem*98);
 echo "newrem says it is: $newrem <br>";
 
-$digit = round($dotrem);
+$digit = round($newrem);
 echo "digit says it is: $digit <br>";
 if ($digit >= '10') {
 	$checkdigit=sprintf("%s", $digit);
